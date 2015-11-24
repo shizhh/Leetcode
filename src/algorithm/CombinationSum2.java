@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class CombinationSum {
+public class CombinationSum2 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		CombinationSum main = new CombinationSum();
-		int[] candidates = {2,2,3,6,7};
-		int target = 4;
+		CombinationSum2 main = new CombinationSum2();
+		int[] candidates = {10,1,2,7,6,1,5};
+		int target = 8;
 		List<List<Integer>> res = main.combinationSum(candidates, target);
 		System.out.println(res);
 	}
@@ -34,10 +34,11 @@ public class CombinationSum {
 			return;
 		else {
 			for (int i = start; i < candidates.length; i++){
-				if(i>0 && candidates[i]==candidates[i-1])
+				// 跳过重复元素
+				if(i>start && candidates[i]==candidates[i-1])
 					continue;
 				temp.add(candidates[i]);
-				combinate(candidates, target-candidates[i], i, temp, res);
+				combinate(candidates, target-candidates[i], i+1, temp, res);
 				temp.remove(temp.size() - 1);
 			}
 		}
