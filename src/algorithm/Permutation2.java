@@ -27,6 +27,7 @@ public class Permutation2 {
 		for (int i = 0; i < nums.length; i++) {
 			if (used[i] == 1)
 				continue;
+			// 两个数相同，必须是前一个已经使用后，后一个才能用，为了消除重复
 			if (i > 0 && nums[i] == nums[i-1]) {
 				if (used[i-1] == 0)
 					continue;
