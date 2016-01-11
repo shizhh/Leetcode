@@ -4,15 +4,9 @@ import java.util.*;
 
 public class Substring_with_Concatenation_of_All_Words {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-		String s = "foo";
-		String[] words = {"o","o", "f"};
-		System.out.println(findSubstring(s, words).toString());
-//		System.out.println(s.substring(2,3));
-	}
-	
+	/**
+	 * Time Limit Exceeded
+	 * */
 	public static List<Integer> findSubstring(String s, String[] words){
 	
 		List<Integer> res = new ArrayList<>();
@@ -57,5 +51,62 @@ public class Substring_with_Concatenation_of_All_Words {
 		return res;
 	}
 	
+	public static List<Integer> findSubstring2(String s, String[] words) {
+		List<Integer> ans = new ArrayList<>();
+		int n = s.length();
+		int cnt = words.length;	// number of words
+		if (n <= 0 || cnt <= 0)	return ans;
+		
+		// initialize dict from words
+		Map<String, Integer> dict = new HashMap<>();
+		for (String w : words)
+			dict.put(w, !dict.containsKey(w) ? 1 : dict.get(w)+1);
+		
+		int wl = words[0].length();	// length of each word
+		
+		for (int i = 0; i < wl; ++i) {
+			int left = i, count = 0;
+			Map<String, Integer> tdict = new HashMap<>();
+			for (int j = i; j <= n - wl; j += wl) {
+				String str = s.substring(j, j+wl);
+				if (dict.containsKey(str)) {
+					tdict.put(str, !tdict.containsKey(str) ? 1 : tdict.get(str)+1);
+					if (tdict.get(str) <= dict.get(str)) {
+						count++;
+					}else {
+						while (tdict.get(str) > dict.get(str)) {
+							String str1 = s.substring(left, left+wl);
+							tdict.put(str1, tdict.get(str1)-1);
+							if (tdict.get(str1) < dict.get(str1))
+								count--;
+							left += wl;
+						}
+					}
+					if (count == cnt) {
+						ans.add(left);
+						String tstr = s.substring(left, left+wl);
+						tdict.put(tstr, tdict.get(tstr)-1);
+						count--;
+						left += wl;
+					}
+				}else {
+					tdict.clear();
+					count = 0;
+					left = j + wl;
+				}
+			}
+		}
+			
+		return ans;
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		String s = "barfoothefoobar";
+		String[] words = {"foo","bar"};
+		System.out.println(findSubstring2(s, words).toString());
+//		System.out.println(s.substring(2,3));
+	}
 	
 }
