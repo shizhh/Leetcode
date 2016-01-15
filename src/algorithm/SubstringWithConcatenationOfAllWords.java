@@ -2,7 +2,7 @@ package algorithm;
 
 import java.util.*;
 
-public class Substring_with_Concatenation_of_All_Words {
+public class SubstringWithConcatenationOfAllWords {
 
 	/**
 	 * Time Limit Exceeded

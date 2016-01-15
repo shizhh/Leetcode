@@ -4,11 +4,9 @@ import java.io.*;
 import java.util.*;
 import java.util.concurrent.*;
 
-public class ThreadPoolTest
-{
+public class ThreadPoolTest {
 
-	public static void main(String[] args) throws Exception
-	{
+	public static void main(String[] args) throws Exception {
 		Scanner in = new Scanner(System.in);
 		System.out.println("Enter base directory : ");
 		String directory = in.nextLine();
@@ -20,14 +18,11 @@ public class ThreadPoolTest
 		MatchCounter counter = new MatchCounter(new File(directory), keyword, pool);
 		Future<Integer> result = pool.submit(counter);
 
-		try
-		{
+		try {
 			System.out.println(result.get() + " matching files.");
-		} catch (ExecutionException e)
-		{
+		} catch (ExecutionException e) {
 
-		} catch (InterruptedException ex)
-		{
+		} catch (InterruptedException ex) {
 
 		}
 		pool.shutdown();
@@ -41,8 +36,7 @@ public class ThreadPoolTest
  * This task counts the files in a directory and its subdirectories that contain
  * a given keyword.
  */
-class MatchCounter implements Callable<Integer>
-{
+class MatchCounter implements Callable<Integer> {
 	private File directory;
 	private String keyword;
 	private ExecutorService pool;
@@ -51,44 +45,35 @@ class MatchCounter implements Callable<Integer>
 	/**
 	 * Constructs a MatchCounter.
 	 */
-	public MatchCounter(File directory, String keyword, ExecutorService pool)
-	{
+	public MatchCounter(File directory, String keyword, ExecutorService pool) {
 		this.directory = directory;
 		this.keyword = keyword;
 		this.pool = pool;
 	}
 
-	public Integer call()
-	{
+	public Integer call() {
 		count = 0;
-		try
-		{
+		try {
 			File[] files = directory.listFiles();
 			List<Future<Integer>> results = new ArrayList<>();
 
 			for (File file : files)
-				if (file.isDirectory())
-				{
+				if (file.isDirectory()) {
 					MatchCounter counter = new MatchCounter(file, keyword, pool);
 					Future<Integer> result = pool.submit(counter);
 					results.add(result);
-				} else
-				{
+				} else {
 					if (search(file))
 						count++;
 				}
-			for (Future<Integer> result : results)
-			{
-				try
-				{
+			for (Future<Integer> result : results) {
+				try {
 					count += result.get();
-				} catch (ExecutionException e)
-				{
+				} catch (ExecutionException e) {
 					e.printStackTrace();
 				}
 			}
-		} catch (InterruptedException e)
-		{
+		} catch (InterruptedException e) {
 		}
 		return count;
 	}
@@ -96,23 +81,18 @@ class MatchCounter implements Callable<Integer>
 	/**
 	 * Searches a file for a given keyword.
 	 */
-	public boolean search(File file)
-	{
-		try
-		{
-			try (Scanner in = new Scanner(file))
-			{
+	public boolean search(File file) {
+		try {
+			try (Scanner in = new Scanner(file)) {
 				boolean found = false;
-				while (!found && in.hasNextLine())
-				{
+				while (!found && in.hasNextLine()) {
 					String line = in.nextLine();
 					if (line.contains(keyword))
 						found = true;
 				}
 				return found;
 			}
-		} catch (IOException e)
-		{
+		} catch (IOException e) {
 			return false;
 		}
 	}
