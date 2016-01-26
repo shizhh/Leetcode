@@ -7,6 +7,6 @@ public class ListNode {
 	public ListNode(int val) { this.val = val;}
 	
 	public String toString() {
-		return val + " ";
+		return val + "->";
 	}
 }
