@@ -7,36 +7,37 @@ import java.util.Queue;
 
 import bean.TreeNode;
 
-public class BinaryTreeLevelOrderTraversal2 {
-
-	public List<List<Integer>> levelOrderBottom(TreeNode root) {
+public class BinaryTreeLevelOrderTraversal
+{
+	
+	public List<List<Integer>> levelOrder(TreeNode root)
+	{
 		List<List<Integer>> res = new ArrayList<>();
 		if (root == null){
 			return res;
 		}
-		// root is not null
+		// root != null
 		Queue<TreeNode> queue = new LinkedList<>();
-		queue.offer(root);
+		queue.add(root);
 		while (!queue.isEmpty()){
-			int size = queue.size();
 			List<Integer> list = new ArrayList<>();
-			for (int i=0; i<size; i++){
+			int size = queue.size();
+			for (int i = 0; i < size; i++){
 				TreeNode node = queue.poll();
 				list.add(node.val);
-				
 				if (node.left != null){
-					queue.offer(node.left);
+					queue.add(node.left);
 				}
 				if (node.right != null){
-					queue.offer(node.right);
+					queue.add(node.right);
 				}
 			}
-			res.add(0, list);
+			res.add(list);
 		}
 		return res;
-	}	
+	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args){
 		TreeNode t1 = new TreeNode(1);
 		TreeNode t2 = new TreeNode(2);
 		TreeNode t3 = new TreeNode(3);
@@ -47,8 +48,7 @@ public class BinaryTreeLevelOrderTraversal2 {
 		t3.left = t4;
 		t4.right = t5;
 		
-		BinaryTreeLevelOrderTraversal2 main = new BinaryTreeLevelOrderTraversal2();
-		System.out.println(main.levelOrderBottom(t1));
+		BinaryTreeLevelOrderTraversal main = new BinaryTreeLevelOrderTraversal();
+		System.out.println(main.levelOrder(t1));
 	}
-	
 }
