@@ -13,7 +13,7 @@ public class Subsets {
 		Arrays.sort(nums);
 		
 		List<List<Integer>> resList = new ArrayList<>();
-		resList.add(new ArrayList<>());
+		resList.add(new ArrayList<Integer>());
 		System.out.println(resList);
 		subsets(nums, 0, resList);
 		System.out.println(resList);

@@ -106,21 +106,21 @@ public class BinaryTreeInorderTraversal {
 	// -----------------------------------------
 	// 后序遍历树，递归
 	// -----------------------------------------
-	public List<Integer> afterorderTraversal(TreeNode root){
+	public List<Integer> postorderTraversal(TreeNode root){
 		List<Integer> res = new ArrayList<>();
 		if (root == null){
 			return res;
 		}
 		else{
-			afterorder(root, res);
+			postorder(root, res);
 		}
 		return res;
 	}
 	
-	private void afterorder(TreeNode p, List<Integer> res){
+	private void postorder(TreeNode p, List<Integer> res){
 		if (p != null){
-			afterorder(p.left, res);
-			afterorder(p.right, res);
+			postorder(p.left, res);
+			postorder(p.right, res);
 			res.add(p.val);
 		}
 	}
@@ -128,7 +128,7 @@ public class BinaryTreeInorderTraversal {
 	// -----------------------------------------
 	// 后序遍历树，迭代
 	// -----------------------------------------
-	public List<Integer> afterorderTraversal2(TreeNode root){
+	public List<Integer> postorderTraversal2(TreeNode root){
 		List<Integer> res = new ArrayList<>();
 		if (root == null){
 			return res;
@@ -173,11 +173,11 @@ public class BinaryTreeInorderTraversal {
 		BinaryTreeInorderTraversal main = new BinaryTreeInorderTraversal();
 //		List<Integer> res1 = main.inorderTraversal(t1);
 //		List<Integer> res2 = main.preorderTraversal(t1);
-		List<Integer> res3 = main.afterorderTraversal(t1);
+		List<Integer> res3 = main.postorderTraversal(t1);
 		
 //		List<Integer> res11 = main.inorderTraversal2(t1);
 //		List<Integer> res22 = main.preorderTraversal2(t1);
-		List<Integer> res33 = main.afterorderTraversal2(t1);
+		List<Integer> res33 = main.postorderTraversal2(t1);
 		System.out.println(res3);
 		System.out.println(res33);
 	}

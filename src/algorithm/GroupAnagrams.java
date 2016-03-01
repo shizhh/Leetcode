@@ -19,7 +19,7 @@ public class GroupAnagrams {
 			Arrays.sort(tc);
 			String key = String.valueOf(tc);
 			if (!map.containsKey(key)) {
-				map.put(key, new ArrayList<>());
+				map.put(key, new ArrayList<String>());
 			}
 			map.get(key).add(s);
 		}

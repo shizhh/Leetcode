@@ -3,7 +3,6 @@ package algorithm;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.swing.internal.plaf.synth.resources.synth_pt_BR;
 
 public class TextJustification {
 	

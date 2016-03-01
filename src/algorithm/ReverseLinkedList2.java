@@ -36,11 +36,11 @@ public class ReverseLinkedList2 {
     	ListNode n3 = new ListNode(3);
     	ListNode n4 = new ListNode(4);
     	ListNode n5 = new ListNode(5);
-//    	n1.next = n2;
-//    	n2.next = n3;
-//    	n3.next = n4;
-//    	n4.next = n5;
-    	ListNode head = reverseBetween(n1, 1, 1);
+    	n1.next = n2;
+    	n2.next = n3;
+    	n3.next = n4;
+    	n4.next = n5;
+    	ListNode head = reverseBetween(n1, 1, 5);
     	while (head != null){
     		System.out.print(head);
     		head = head.next;
