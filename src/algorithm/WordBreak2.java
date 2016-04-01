@@ -2,6 +2,7 @@ package algorithm;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -48,5 +49,41 @@ public class WordBreak2 {
     		}
     	}
     	
+    }
+    
+    public List<String> wordBreak2(String s, Set<String> wordDict)
+    {
+    	List<String> list = new ArrayList<>();
+    	if(map.containsKey(s))	return map.get(s);
+    	
+    	for (int i = 1; i <= s.length(); i++)
+    	{
+    		String left = s.substring(0,i);
+    		String right = s.substring(i);
+    		if (wordDict.contains(left))
+    		{
+    			List<String> a = wordBreak2(right, wordDict);
+    			for (String b : a)
+    			{
+    				list.add(left+" "+b);
+    			}
+    			if (right.length() == 0)	list.add(left);
+    		}
+    	}
+    	map.put(s, list);
+    	return list;
+    }
+    
+    public static void main(String[] args)
+    {
+    	String s  = "catsanddog";
+    	Set<String> wordDict = new HashSet<>();
+    	wordDict.add("cat");
+    	wordDict.add("cats");
+    	wordDict.add("and");
+    	wordDict.add("sand");
+    	wordDict.add("dog");
+    	WordBreak2 main = new WordBreak2();
+    	System.out.println(main.wordBreak2(s, wordDict));
     }
 }

@@ -38,7 +38,7 @@ public class BestTimetoBuyandSellStock3
 	
 	public static void main(String[] args)
 	{
-		int[] prices = {1, 4, 2, 7};
+		int[] prices = {1, 4, 5, 7};
 		BestTimetoBuyandSellStock3 main = new BestTimetoBuyandSellStock3();
 		System.out.println(main.maxProfit(prices));
 	}

@@ -3,6 +3,10 @@ package algorithm;
 
 public class BestTimetoBuyandSellStock
 {
+	
+	// ---------------------------------
+	// 维护一个当前价格前最小的值
+	// ---------------------------------
 	public int maxProfit(int[] prices)
 	{
 		int len = prices.length;
