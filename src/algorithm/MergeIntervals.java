@@ -10,12 +10,20 @@ import bean.Interval;
 
 public class MergeIntervals {
 
+
+	private static Comparator<Interval> intervalComparator = new Comparator<Interval>() {
+		@Override
+		public int compare(Interval o1, Interval o2) {
+			return o1.start - o2.start;
+		}
+	};
+
 	public static List<Interval> merge(List<Interval> intervals) {
 		List<Interval> res = new ArrayList<>();
 		int n = intervals.size();
 		if (n < 1)
 			return res;
-		Collections.sort(intervals, new IntervalComparator());
+		Collections.sort(intervals, intervalComparator);
 		Interval intv = intervals.get(0);
 		for (int i = 1; i < n; i++) {
 			Interval intv2 = intervals.get(i);
@@ -44,14 +52,16 @@ public class MergeIntervals {
 	
 }
 
-class IntervalComparator implements Comparator {
 
-	@Override
-	public int compare(Object o1, Object o2) {
-		Interval i1 = (Interval) o1;
-		Interval i2 = (Interval) o2;
-		
-		return i1.start - i2.start;
-	}
-	
-}
+
+//class IntervalComparator implements Comparator {
+//
+//	@Override
+//	public int compare(Object o1, Object o2) {
+//		Interval i1 = (Interval) o1;
+//		Interval i2 = (Interval) o2;
+//
+//		return i1.start - i2.start;
+//	}
+//
+//}

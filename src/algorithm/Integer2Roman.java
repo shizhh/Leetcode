@@ -36,7 +36,7 @@ public class Integer2Roman {
 
     public static void main(String[] args) {
         Integer2Roman integer2Roman = new Integer2Roman();
-        System.out.println(integer2Roman.intToRoman(800));
+        System.out.println(integer2Roman.intToRoman(1980));
     }
 
 }
