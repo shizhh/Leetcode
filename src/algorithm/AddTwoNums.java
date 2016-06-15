@@ -34,6 +34,20 @@ public class AddTwoNums {
 		return result.next;
 	}
 
+
+	public int func() {
+		int count = 0;
+		int num = 12345;
+		while (num > 0) {
+			count++;
+			num &= (num - 1);
+
+		}
+		return count;
+	}
+
+
+
 	// This method is just here to test the function addTwoNumbers
 	public static void main(String[] args) {
 		ListNode l1 = new ListNode(2);
@@ -51,7 +65,8 @@ public class AddTwoNums {
 			result = result.next;
 		}
 		System.out.println();
-		
-		
+
+		System.out.println(new AddTwoNums().func());
+
 	}
 }
