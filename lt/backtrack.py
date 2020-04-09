@@ -36,7 +36,7 @@ def backtrack_n_queens(board, row, res):
 def is_valid(board, col, row):
     n = len(board)
     # 检查上方的列
-    for i in range(n):
+    for i in range(row):
         if board[i][col] == 'Q':
             return False
     # 检查右上方
@@ -101,3 +101,24 @@ def backtrack_subsets(nums, start, cur_subset, res):
 
 # nums = [1,2,3]
 # print(solve_subsets(nums))
+
+##############################################
+# combine
+def solve_combine(n, k):
+    res = []
+    if k <= 0 or n <= 0 or k > n:
+        return res
+    backtrack_combine(n, k, 1, [], res)
+    return res
+
+def backtrack_combine(n, k, start, cur_combine, res):
+    if len(cur_combine) == k:
+        res.append(cur_combine[:])
+        return
+
+    for i in range(start, n+1):
+        cur_combine.append(i)
+        backtrack_combine(n, k, i+1, cur_combine, res)
+        cur_combine.pop()
+
+print(solve_combine(4, 2))
