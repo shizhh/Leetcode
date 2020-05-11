@@ -154,3 +154,4 @@ def backtrack_parentheses(left, right, track, res):
     track.pop()
 
 print(solve_parentheses(3))
+
